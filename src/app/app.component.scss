@@ -1,0 +1,25 @@
+.template {
+	padding: 20px;
+
+  &-container {
+    z-index: 1;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  &-content {
+    margin-top: 10px;
+  }
+
+  .form-container {
+    margin-top: 20px;
+
+    .field-checkbox {
+      margin: 5px;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.template-item {
+	display: inline-block;
+	background: #dcfff959;
+	min-height: 28px;
+	padding: 5px;
+	position: relative;
+	min-width: 138px;
+	border-radius: 10px;
+
+	&-label {
+		position: absolute;
+		width: 100%;
+		font-size: 8px;
+		top: -3px;
+	}
+
+	.invis-marker {
+		width: 0;
+		font-size: 0;
+	}
+}

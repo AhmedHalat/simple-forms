@@ -1,0 +1,55 @@
+<div class="template">
+  <div class="template-container">
+    <div class="template-header">Template:</div>
+    <div class="template-content" #template>
+      VC <field label="Visit" [value]="template.visit_type"></field> visit with client
+      <field label="Client Items" [value]="template.client_items"></field>. <br />
+      SLP scope of practice and services discussed and informed consent for services obtained. <br />
+      SLP reviewed file prior to visit. Client’s previous medical history includes <field label="History" [value]="template.history?.join(', ')"></field> <field label="History" [value]="template.history_text"></field>. <br />
+      Referral indicated clt is in need of swallowing assessment<field label="swallowing assessment" [value]="template.swallow"></field>. <br />
+      Client indicated they <field label="Additional" [value]="template.additional"></field>.<br />
+      Client reported difficulties with of <field label="Difficulties" [value]="template.difficulties?.join(', ')"></field>.
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-header">Form:</div>
+    <div class="form-group">
+      <div>Visit Type</div>
+      <p-dropdown [options]="['', 'PC', 'Secure video']" [(ngModel)]="template.visit_type"></p-dropdown>
+    </div>
+    <div class="form-group">
+      <div>Client Items</div>
+      <input type="text" pInputText [(ngModel)]="template.client_items" />
+    </div>
+    <div class="form-group">
+      <div>Previous History</div>
+      <div *ngFor="let category of ['CAD', 'HTN', 'DMI', 'DMII', 'Hyperlipidemia', 'Hypothyroidism', 'Hyperthyroidism', 'OA', 'RA']" class="field-checkbox">
+        <p-checkbox [label]="category" [value]="category" [(ngModel)]="template.history"></p-checkbox>
+      </div>
+      <!-- <p-multiSelect [options]="" [(ngModel)]="template.history"></p-multiSelect> -->
+      <input type="text" pInputText [(ngModel)]="template.history_text" />
+    </div>
+
+    <div class="form-group">
+      <div>Swallowing assessment</div>
+      <textarea type="text" pInputText [ngModel]="(template.swallow_other)" (ngModelChange)="template.swallow = $event ? ' for ' + $event : ''; template.swallow_other = $event"></textarea>
+    </div>
+
+    <div class="form-group">
+      <div>Additional</div>
+      <textarea rows="1" cols="30" pInputTextarea [(ngModel)]="template.additional"></textarea>
+    </div>
+
+    <div class="form-group">
+      <div>Difficulties</div>
+      <!-- <p-multiSelect [options]="['liquids', 'solids', 'pills', 'meats', 'foods sticking']" [(ngModel)]="template.difficulties"></p-multiSelect> -->
+      <div *ngFor="let category of ['liquids', 'solids', 'pills', 'meats', 'foods sticking']" class="field-checkbox">
+        <p-checkbox [label]="category" [value]="category" [(ngModel)]="template.difficulties"></p-checkbox>
+      </div>
+    </div>
+
+  </div>
+
+  <p-button label="Copy" (onClick)="copy()"></p-button>
+</div>
